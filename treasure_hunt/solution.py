@@ -4,8 +4,8 @@ import math
 # Auto-generated code below aims at helping you parse
 # the standard input according to the problem statement.
 
-def bestPath(start_x,start_y,mypath=[]):
-    print("Checking",start_x,start_y, file=sys.stderr, flush=True)
+def bestPath(start_x,start_y,prevpath=[]):
+    print("Checking",start_x,start_y, prevpath, file=sys.stderr, flush=True)
     gold = 0
 
     # out of bounds    
@@ -16,12 +16,14 @@ def bestPath(start_x,start_y,mypath=[]):
 
     # do not go where we have already been
     thisplace = [start_x,start_y]
-    if thisplace in mypath:
+    print(start_x,start_x,"Previously",prevpath, file=sys.stderr, flush=True)
+    if thisplace in prevpath:
         print("Been here before!", file=sys.stderr, flush=True)
         return gold
 
+    mypath = prevpath.copy()
     mypath.append(thisplace)
-    
+
     loc = str(field[start_x][start_y])
 
 
