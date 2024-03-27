@@ -45,7 +45,6 @@ def bestPath(start_x,start_y,prevpath=[[]]):
     # try each direction  
     pathGold = int(bestPath(start_x-1,start_y,mypath))
     pathGold = max(pathGold,int(bestPath(start_x+1,start_y,mypath)))
-    pathGold = max(pathGold,int(bestPath(start_x-1,start_y,mypath)))
     pathGold = max(pathGold,int(bestPath(start_x,start_y+1,mypath)))
     pathGold = max(pathGold,int(bestPath(start_x,start_y-1,mypath)))
     
