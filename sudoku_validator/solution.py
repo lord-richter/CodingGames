@@ -11,6 +11,7 @@ cell = [[] for a in range(3)]
 
 for i in range(9):
     row = input().split()
+    print(row,file=sys.stderr)
     # check row
     rowsize = len(sorted(set(row)))
     passed = passed and rowsize==9
@@ -18,6 +19,8 @@ for i in range(9):
     # save column for later
     for j in range(9):
         column[j][i]=row[j]
+        # while we are here, make sure numbers are in range
+        if int(row[j])>9 or int(row[j])<1: passed=False
     # cells
     cell[0].extend(row[0:3])
     cell[1].extend(row[3:6])
@@ -25,8 +28,8 @@ for i in range(9):
     # every third row (9 values) check
     if len(cell[0])==9 and passed:
         passed = passed and len(sorted(set(cell[0])))==9
-        passed = passed and len(sorted(set(cell[0])))==9
-        passed = passed and len(sorted(set(cell[0])))==9
+        passed = passed and len(sorted(set(cell[1])))==9
+        passed = passed and len(sorted(set(cell[2])))==9
         # new cell
         cell=[[] for a in range(3)]
     
