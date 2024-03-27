@@ -4,8 +4,8 @@ import math
 # Auto-generated code below aims at helping you parse
 # the standard input according to the problem statement.
 
-def bestPath(start_x,start_y,prevpath=[]):
-    print("Checking",start_x,start_y, prevpath, file=sys.stderr, flush=True)
+def bestPath(start_x,start_y,prevpath=[[]]):
+    print("Checking",start_x,start_y,  file=sys.stderr, flush=True)
     gold = 0
 
     # out of bounds    
@@ -16,20 +16,25 @@ def bestPath(start_x,start_y,prevpath=[]):
 
     # do not go where we have already been
     thisplace = [start_x,start_y]
-    print(start_x,start_x,"Previously",prevpath, file=sys.stderr, flush=True)
+    print("This place:",thisplace, file=sys.stderr, flush=True)
+    #print(start_x,start_x,"Previously",prevpath, file=sys.stderr, flush=True)
     if thisplace in prevpath:
         print("Been here before!", file=sys.stderr, flush=True)
         return gold
 
-    mypath = prevpath.copy()
-    mypath.append(thisplace)
+    mypath = list(prevpath)
+    #print("My path:",mypath, file=sys.stderr, flush=True)
+    if not(thisplace in mypath):
+        if not(mypath[0]):mypath=[thisplace]
+        else:mypath.append(thisplace)
+    #print("My path append:",mypath, file=sys.stderr, flush=True)
 
     loc = str(field[start_x][start_y])
 
 
     # wall... stop here
     if loc=="#":
-        print("Can't go this way!", file=sys.stderr, flush=True)
+        #print("Can't go this way!", file=sys.stderr, flush=True)
         return gold
 
     # standing on gold?    
